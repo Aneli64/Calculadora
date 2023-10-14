@@ -5,143 +5,208 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:layout_centerHorizontal="true">
+    android:layout_centerHorizontal="true"
+    android:background="@android:color/holo_purple"
+    >
 
     <TextView
         android:id="@+id/texto"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
         android:hint="Calculo:"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
     <Button
         android:id="@+id/boton0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@android:id/content"
-        app:layout_constraintTop_toBottomOf="@id/texto" />
+        app:layout_constraintTop_toBottomOf="@id/texto"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
+
 
     <Button
         android:id="@+id/boton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton0"
-        app:layout_constraintTop_toBottomOf="@id/texto" />
+        app:layout_constraintTop_toBottomOf="@id/texto"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton1"
-        app:layout_constraintTop_toBottomOf="@id/texto" />
+        app:layout_constraintTop_toBottomOf="@id/texto"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/botonMas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton2"
-        app:layout_constraintTop_toBottomOf="@id/texto" />
+        app:layout_constraintTop_toBottomOf="@id/texto"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@android:id/content"
-        app:layout_constraintTop_toBottomOf="@id/boton0" />
+        app:layout_constraintTop_toBottomOf="@id/boton0"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="4"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton3"
-        app:layout_constraintTop_toBottomOf="@id/boton2" />
+        app:layout_constraintTop_toBottomOf="@id/boton2"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton4"
-        app:layout_constraintTop_toBottomOf="@id/boton2"/>
+        app:layout_constraintTop_toBottomOf="@id/boton2"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/botonMenos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton5"
-        app:layout_constraintTop_toBottomOf="@id/botonMas" />
+        app:layout_constraintTop_toBottomOf="@id/botonMas"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="6"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@android:id/content"
-        app:layout_constraintTop_toBottomOf="@id/boton3" />
+        app:layout_constraintTop_toBottomOf="@id/boton3"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="7"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton6"
-        app:layout_constraintTop_toBottomOf="@id/boton4" />
+        app:layout_constraintTop_toBottomOf="@id/boton4"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="8"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton7"
-        app:layout_constraintTop_toBottomOf="@id/boton5"/>
+        app:layout_constraintTop_toBottomOf="@id/boton5"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/botonPor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="x"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton8"
-        app:layout_constraintTop_toBottomOf="@id/botonMenos" />
+        app:layout_constraintTop_toBottomOf="@id/botonMenos"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/boton9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="9"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@android:id/content"
-        app:layout_constraintTop_toBottomOf="@id/boton6" />
+        app:layout_constraintTop_toBottomOf="@id/boton6"
+        android:backgroundTint="@color/black"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/botonEquals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="="
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton9"
-        app:layout_constraintTop_toBottomOf="@id/boton7" />
+        app:layout_constraintTop_toBottomOf="@id/boton7"
+        android:backgroundTint="@color/design_default_color_error"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/botonCE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CE"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/botonEquals"
-        app:layout_constraintTop_toBottomOf="@id/boton8"/>
+        app:layout_constraintTop_toBottomOf="@id/boton8"
+        android:backgroundTint="@color/design_default_color_error"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/botonEntre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/boton8"
-        app:layout_constraintTop_toBottomOf="@id/botonPor" />
+        app:layout_constraintTop_toBottomOf="@id/botonPor"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.content.Context
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Toast que nos proporciona un mensaje ante error general
+        val contexto: Context = this
+        val mens = "Debe introducir 2 números y una operación " +
+                "para mostrar un resultado."
+        val durac = Toast.LENGTH_LONG
+        val tErrorGeneral = Toast.makeText(contexto, mens, durac)
+
 
         //Numeros
         val boton0 = findViewById<Button>(R.id.boton0)
@@ -40,36 +50,71 @@ class MainActivity : AppCompatActivity() {
         val texto = findViewById<TextView>(R.id.texto)
 
         val calc = Calculo()
-        var cifrasLinea = ""
+        var valores = ""
         var tipoOp = ""
+
+        //variable que cuenta los operandos
+        var numOP = 0
 
         for (i in botones.indices) {
             botones[i].setOnClickListener {
                 when (i) {
                     in 0..9 -> {
-                        cifrasLinea += botones[i].text //podemos hacer funcion
-                        texto.hint = cifrasLinea // de esto en Calculo()
+                        valores += botones[i].text //podemos hacer funcion
+                        texto.hint = valores // de esto en Calculo()
                     }
 
                     in 10..13 -> {
-                        cifrasLinea += botones[i].text //podemos hacer funcion
-                        texto.hint = cifrasLinea // de esto en Calculo()
 
-                        tipoOp = botones[i].text.toString() //guardamos tipo de operacion
+                        if (numOP >= 1) { //realizamos misma operacion de "="(14) en cuanto introducimos un segundo operador
+                            while (Error.excepFormato(valores)) {
+                                tErrorGeneral.show()
+                                valores = ""
+                                return@setOnClickListener //volvemos al listener para seguir usando app
+                            }
+                            val res = calc.doOperation(valores, tipoOp)
+                            texto.hint = res.toString()
+                            valores = res.toString() //igualamos al resultado -> num1 = resultado
+
+                            //lo volvemos a dejar en 1 para continuar desde inicio
+                            numOP = 1
+
+                            valores += botones[i].text //podemos hacer funcion
+                            texto.hint = valores // de esto en Calculo()
+
+                            tipoOp = botones[i].text.toString() //guardamos tipo de operacion
+
+                        } else {
+                            valores += botones[i].text
+                            texto.hint = valores
+
+                            tipoOp = botones[i].text.toString() //guardamos tipo de operacion
+                            numOP++ //incrementamos operando para saber con cuantos estamos tratando
+                        }
                     }
 
                     14 -> {
-                        val op = cifrasLinea.split("+", "-", "x", "/")
-                        val res = calc.doOperation(op[0].toFloat(), tipoOp, op[1].toFloat())
+                        while (Error.excepFormato(valores)) {
+                            tErrorGeneral.show()
+                            valores = ""
+                            return@setOnClickListener //volvemos al listener para seguir usando app
+                        }
+                        val res = calc.doOperation(valores, tipoOp)
                         texto.hint = res.toString()
-                        cifrasLinea = res.toString() //igualamos al resultado -> num1 = resultado
+                        valores = res.toString() //igualamos al resultado -> num1 = resultado
+
+                        //resetamos contador
+                        numOP = 0
 
                     }
 
                     //limpiamos con CE
                     15 -> {
                         texto.hint = ""
-                        cifrasLinea = ""
+                        valores = ""
+
+                        //resetamos contador
+                        numOP = 0
                     }
                 }
             }
