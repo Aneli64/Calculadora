@@ -56,12 +56,15 @@ class MainActivity : AppCompatActivity() {
         //variable que cuenta los operandos
         var numOP = 0
 
+        /**
+         * Bucle For que nos intera en los indices delos botones para realizar sus Listener
+         */
         for (i in botones.indices) {
             botones[i].setOnClickListener {
                 when (i) {
                     in 0..9 -> {
-                        valores += botones[i].text //podemos hacer funcion
-                        texto.hint = valores // de esto en Calculo()
+                        valores += botones[i].text
+                        texto.hint = valores
                     }
 
                     in 10..13 -> {
@@ -79,8 +82,8 @@ class MainActivity : AppCompatActivity() {
                             //lo volvemos a dejar en 1 para continuar desde inicio
                             numOP = 1
 
-                            valores += botones[i].text //podemos hacer funcion
-                            texto.hint = valores // de esto en Calculo()
+                            valores += botones[i].text
+                            texto.hint = valores
 
                             tipoOp = botones[i].text.toString() //guardamos tipo de operacion
 

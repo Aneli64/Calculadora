@@ -1,6 +1,11 @@
 package com.example.calculadora
 class Error {
     companion object {
+        /**
+         * funcion que utilizamos para comprobar el correcto formato de nuuestra operacion
+         * @param valores numeros a pasar
+         * @return Boolean que nos muestra si se cumple o no la excepcion
+         */
         fun excepFormato(valores: String): Boolean {
             //utilizamos una Regex para verificar el formato -> numero,operador,numero
             val operRegul = "\\d+[-+x/]\\d+".toRegex()
