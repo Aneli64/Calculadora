@@ -17,5 +17,6 @@
     <string name="bot8">8</string>
     <string name="bot9">9</string>
     <string name="botDecim">.</string>
+    <string name="botCE1">></string>
     <string name="textPant">""</string>
 </resources>

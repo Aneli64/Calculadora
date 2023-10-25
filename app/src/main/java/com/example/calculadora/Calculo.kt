@@ -1,5 +1,7 @@
 package com.example.calculadora
 
+import android.widget.Toast
+
 class Calculo {
     private var resultado = 0.0F
     private var valores = ""
@@ -93,6 +95,8 @@ class Calculo {
             }
 
             15 -> doDelete()
+            16 -> doDeleteCifra()
+            17 -> doDecimal(cifraBot)
 
         }
         return valores
@@ -124,4 +128,13 @@ class Calculo {
         valores = ""
         numOP = 0
     }
+
+    private fun doDeleteCifra(){
+        valores = valores.substring(0, valores.length-1)
+    }
+
+    private fun doDecimal(textBot: String){
+        valores += textBot
+    }
+
 }

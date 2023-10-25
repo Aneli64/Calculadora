@@ -31,8 +31,13 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.botonPor),
             findViewById(R.id.botonEntre),
             findViewById(R.id.botonEquals),
-            findViewById(R.id.botonCE)
+            findViewById(R.id.botonCE),
+            findViewById(R.id.botonCE1),
+            findViewById(R.id.botonPunto)
         )
+        fun mensError(msj: String){
+            Toast.makeText(this, msj, Toast.LENGTH_LONG).show()
+        }
 
         val contexto: Context = this
         val mens = "Debe introducir 2 números y una operación " +
@@ -47,6 +52,9 @@ class MainActivity : AppCompatActivity() {
         for (i in botones.indices) {
             botones[i].setOnClickListener {
                 val resultado = calc.BotonClick(i, botones[i].text.toString())
+                if (resultado == ""){
+                    mensError("Error de cifras")
+                }
                 texto.hint = resultado
             }
         }
