@@ -1,17 +1,10 @@
 package com.example.calculadora
 
-import android.content.Context
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-
 class Calculo {
     private var resultado = 0.0F
     private var valores = ""
     private var tipoOp = ""
     private var numOP = 0
-
 
 
     /**
@@ -75,40 +68,40 @@ class Calculo {
         return Operation(op[0].toFloat(), tipoOp, op[1].toFloat())
     }
 
-    fun manejarClicBoton(indiceBoton: Int, etiquetaBoton: String): String {
-        when (indiceBoton) {
+    fun BotonClick(indBot: Int, cifraBot: String): String {
+        when (indBot) {
             in 0..9 -> {
-                valores += etiquetaBoton
+                valores += cifraBot
             }
 
             in 10..13 -> {
                 if (numOP >= 1) {
-                    if (manejarMultiplesOperaciones()) {
+                    if (variasOperac()) {
                         return valores
                     }
                 }
-                valores += etiquetaBoton
-                tipoOp = etiquetaBoton
+                valores += cifraBot
+                tipoOp = cifraBot
                 numOP++
             }
 
             14 -> {
-                if (manejarIgual()) {
+                if (doEquals()) {
                     return valores
                 }
                 numOP = 0
             }
 
-            15 -> {
-                manejarBorrar()
-            }
+            15 -> doDelete()
+
         }
         return valores
     }
 
-    private fun manejarMultiplesOperaciones(): Boolean {
+    private fun variasOperac(): Boolean {
         if (Error.excepFormato(valores)) {
             valores = ""
+            numOP = 0
             return true
         }
         val resultado = doOperation(valores, tipoOp)
@@ -116,9 +109,10 @@ class Calculo {
         return false
     }
 
-    private fun manejarIgual(): Boolean {
+    private fun doEquals(): Boolean {
         if (Error.excepFormato(valores)) {
             valores = ""
+            numOP = 0
             return true
         }
         val resultado = doOperation(valores, tipoOp)
@@ -126,7 +120,7 @@ class Calculo {
         return false
     }
 
-    private fun manejarBorrar() {
+    private fun doDelete() {
         valores = ""
         numOP = 0
     }

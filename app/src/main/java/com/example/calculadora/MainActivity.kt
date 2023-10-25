@@ -46,11 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         for (i in botones.indices) {
             botones[i].setOnClickListener {
-                var resultado = calc.manejarClicBoton(i, botones[i].text.toString())
-                /*if (Error.excepFormato(resultado)){
-                    tErrorGeneral.show()
-                    resultado = calc.manejarClicBoton(i, botones[i].text.toString())
-                }*/
+                val resultado = calc.BotonClick(i, botones[i].text.toString())
                 texto.hint = resultado
             }
         }
