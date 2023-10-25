@@ -1,7 +1,18 @@
 package com.example.calculadora
 
+import android.content.Context
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+
 class Calculo {
     private var resultado = 0.0F
+    private var valores = ""
+    private var tipoOp = ""
+    private var numOP = 0
+
+
 
     /**
      * Funcion suma
@@ -62,5 +73,61 @@ class Calculo {
     fun doOperation(valores: String, tipoOp: String): Float {
         val op = valores.split("+", "-", "x", "/", "=")
         return Operation(op[0].toFloat(), tipoOp, op[1].toFloat())
+    }
+
+    fun manejarClicBoton(indiceBoton: Int, etiquetaBoton: String): String {
+        when (indiceBoton) {
+            in 0..9 -> {
+                valores += etiquetaBoton
+            }
+
+            in 10..13 -> {
+                if (numOP >= 1) {
+                    if (manejarMultiplesOperaciones()) {
+                        return valores
+                    }
+                }
+                valores += etiquetaBoton
+                tipoOp = etiquetaBoton
+                numOP++
+            }
+
+            14 -> {
+                if (manejarIgual()) {
+                    return valores
+                }
+                numOP = 0
+            }
+
+            15 -> {
+                manejarBorrar()
+            }
+        }
+        return valores
+    }
+
+    private fun manejarMultiplesOperaciones(): Boolean {
+        if (Error.excepFormato(valores)) {
+            valores = ""
+            return true
+        }
+        val resultado = doOperation(valores, tipoOp)
+        valores = resultado.toString()
+        return false
+    }
+
+    private fun manejarIgual(): Boolean {
+        if (Error.excepFormato(valores)) {
+            valores = ""
+            return true
+        }
+        val resultado = doOperation(valores, tipoOp)
+        valores = resultado.toString()
+        return false
+    }
+
+    private fun manejarBorrar() {
+        valores = ""
+        numOP = 0
     }
 }

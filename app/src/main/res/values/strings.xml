@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">Calculadora</string>
+    <string name="app_name_Elian">Calculadora</string>
+    <string name="botCE">C</string>
+    <string name="botMas">+</string>
+    <string name="botMenos">-</string>
+    <string name="botProd">x</string>
+    <string name="botDiv">/</string>
+    <string name="botEq">=</string>
+    <string name="bot0">0</string>
+    <string name="bot1">1</string>
+    <string name="bot2">2</string>
+    <string name="bot3">3</string>
+    <string name="bot4">4</string>
+    <string name="bot5">5</string>
+    <string name="bot6">6</string>
+    <string name="bot7">7</string>
+    <string name="bot8">8</string>
+    <string name="bot9">9</string>
+    <string name="botDecim">.</string>
+    <string name="textPant">""</string>
 </resources>

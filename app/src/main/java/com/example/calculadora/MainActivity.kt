@@ -8,11 +8,32 @@ import android.content.Context
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+    //texto donde van apareciendo nuestros parametros
+    private lateinit var texto: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Toast que nos proporciona un mensaje ante error general
+        //lista de botones
+        val botones = listOf<Button>(
+            findViewById(R.id.boton0),
+            findViewById(R.id.boton1),
+            findViewById(R.id.boton2),
+            findViewById(R.id.boton3),
+            findViewById(R.id.boton4),
+            findViewById(R.id.boton5),
+            findViewById(R.id.boton6),
+            findViewById(R.id.boton7),
+            findViewById(R.id.boton8),
+            findViewById(R.id.boton9),
+            findViewById(R.id.botonMas),
+            findViewById(R.id.botonMenos),
+            findViewById(R.id.botonPor),
+            findViewById(R.id.botonEntre),
+            findViewById(R.id.botonEquals),
+            findViewById(R.id.botonCE)
+        )
+
         val contexto: Context = this
         val mens = "Debe introducir 2 números y una operación " +
                 "para mostrar un resultado."
@@ -20,107 +41,19 @@ class MainActivity : AppCompatActivity() {
         val tErrorGeneral = Toast.makeText(contexto, mens, durac)
 
 
-        //Numeros
-        val boton0 = findViewById<Button>(R.id.boton0)
-        val boton1 = findViewById<Button>(R.id.boton1)
-        val boton2 = findViewById<Button>(R.id.boton2)
-        val boton3 = findViewById<Button>(R.id.boton3)
-        val boton4 = findViewById<Button>(R.id.boton4)
-        val boton5 = findViewById<Button>(R.id.boton5)
-        val boton6 = findViewById<Button>(R.id.boton6)
-        val boton7 = findViewById<Button>(R.id.boton7)
-        val boton8 = findViewById<Button>(R.id.boton8)
-        val boton9 = findViewById<Button>(R.id.boton9)
-
-        //Tipo operacion
-        val botonMas = findViewById<Button>(R.id.botonMas)
-        val botonMenos = findViewById<Button>(R.id.botonMenos)
-        val botonPor = findViewById<Button>(R.id.botonPor)
-        val botonEntre = findViewById<Button>(R.id.botonEntre)
-        val botonEquals = findViewById<Button>(R.id.botonEquals)
-        val botonCE = findViewById<Button>(R.id.botonCE)
-
-        //lista de botones
-        val botones = listOf<Button>(
-            boton0, boton1, boton2, boton3, boton4, boton5, boton6,
-            boton7, boton8, boton9, botonMas, botonMenos, botonPor, botonEntre, botonEquals, botonCE
-        )
-
-        //texto donde van apareciendo nuestros parametros
-        val texto = findViewById<TextView>(R.id.texto)
-
+        texto = findViewById(R.id.texto)
         val calc = Calculo()
-        var valores = ""
-        var tipoOp = ""
 
-        //variable que cuenta los operandos
-        var numOP = 0
-
-        /**
-         * Bucle For que nos intera en los indices delos botones para realizar sus Listener
-         */
         for (i in botones.indices) {
             botones[i].setOnClickListener {
-                when (i) {
-                    in 0..9 -> {
-                        valores += botones[i].text
-                        texto.hint = valores
-                    }
-
-                    in 10..13 -> {
-
-                        if (numOP >= 1) { //realizamos misma operacion de "="(14) en cuanto introducimos un segundo operador
-                            while (Error.excepFormato(valores)) {
-                                tErrorGeneral.show()
-                                valores = ""
-                                return@setOnClickListener //volvemos al listener para seguir usando app
-                            }
-                            val res = calc.doOperation(valores, tipoOp)
-                            texto.hint = res.toString()
-                            valores = res.toString() //igualamos al resultado -> num1 = resultado
-
-                            //lo volvemos a dejar en 1 para continuar desde inicio
-                            numOP = 1
-
-                            valores += botones[i].text
-                            texto.hint = valores
-
-                            tipoOp = botones[i].text.toString() //guardamos tipo de operacion
-
-                        } else {
-                            valores += botones[i].text
-                            texto.hint = valores
-
-                            tipoOp = botones[i].text.toString() //guardamos tipo de operacion
-                            numOP++ //incrementamos operando para saber con cuantos estamos tratando
-                        }
-                    }
-
-                    14 -> {
-                        while (Error.excepFormato(valores)) {
-                            tErrorGeneral.show()
-                            valores = ""
-                            return@setOnClickListener //volvemos al listener para seguir usando app
-                        }
-                        val res = calc.doOperation(valores, tipoOp)
-                        texto.hint = res.toString()
-                        valores = res.toString() //igualamos al resultado -> num1 = resultado
-
-                        //resetamos contador
-                        numOP = 0
-
-                    }
-
-                    //limpiamos con CE
-                    15 -> {
-                        texto.hint = ""
-                        valores = ""
-
-                        //resetamos contador
-                        numOP = 0
-                    }
-                }
+                var resultado = calc.manejarClicBoton(i, botones[i].text.toString())
+                /*if (Error.excepFormato(resultado)){
+                    tErrorGeneral.show()
+                    resultado = calc.manejarClicBoton(i, botones[i].text.toString())
+                }*/
+                texto.hint = resultado
             }
         }
     }
 }
+
