@@ -39,13 +39,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, msj, Toast.LENGTH_LONG).show()
         }
 
-        val contexto: Context = this
-        val mens = "Debe introducir 2 números y una operación " +
-                "para mostrar un resultado."
-        val durac = Toast.LENGTH_LONG
-        val tErrorGeneral = Toast.makeText(contexto, mens, durac)
-
-
         texto = findViewById(R.id.texto)
         val calc = Calculo()
 
