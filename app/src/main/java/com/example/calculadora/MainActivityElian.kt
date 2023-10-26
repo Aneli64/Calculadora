@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.content.Context
 import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivityElian : AppCompatActivity() {
     //texto donde van apareciendo nuestros parametros
     private lateinit var texto: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_elian)
 
         //lista de botones
         val botones = listOf<Button>(
@@ -40,8 +39,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         texto = findViewById(R.id.texto)
-        val calc = Calculo()
+        val calc = CalculoElian()
 
+        /**
+         * Bucle en donde vamos iterando en una lista en donde contenemos
+         * los botones, e iniciamos sus Listeners
+         */
         for (i in botones.indices) {
             botones[i].setOnClickListener {
                 val resultado = calc.BotonClick(i, botones[i].text.toString())

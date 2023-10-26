@@ -1,8 +1,6 @@
 package com.example.calculadora
 
-import android.widget.Toast
-
-class Calculo {
+class CalculoElian {
     private var resultado = 0.0F
     private var valores = ""
     private var tipoOp = ""
